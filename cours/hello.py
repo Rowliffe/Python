@@ -1,0 +1,1 @@
+print("Bienvenue à l'école Hexagone")
