@@ -1,0 +1,106 @@
+Contexte de l’univers
+• Dans un futur lointain, la galaxie est plongée dans une crise sans précédent.
+• La Seconde Fondation, un groupe secret maîtrisant les sciences mentales,
+lutte pour maintenir la stabilité galactique.
+• Cependant, un groupe rebelle connu sous le nom de "Le Mulet" menace cet
+équilibre.
+• En tant qu’officier de la flotte marchande indépendante, vous avez été
+chargé de réorganiser les équipages de vos vaisseaux pour préparer une
+contre-offensive.
+• Votre mission : gérer les membres de l’équipage et vous assurer que vos
+vaisseaux sont opérationnels avant l’arrivée des renforts dans 3 jours !
+
+Objectifs du TP
+1.Créer et manipuler une liste d’équipage.
+2.Implémenter des fonctions pour gérer les membres (ajout, suppression,
+affichage).
+3.Vérifier la préparation de l’équipage selon des critères précis.
+4.Mettre en place un menu interactif pour naviguer entre les
+fonctionnalités.
+5.Bonus : Intégrer des règles avancées et des éléments aléatoires.
+
+
+1. Création de l'équipage 
+
+faire une fonction add_member pour pouvoir ajouter des membres d'équipages 
+il faudra vérifier est ce qu'ils sont déjà dans l'équipage et aussi que leurs noms et prénoms soient compris entre 3 et 15 caractères 
+Mais est ce que je fais que ca ?? Genre peut être mettre dans cas avec l'age (int) obligatoire encore une restriction, pour les genres mettre plusieurs genre ou pas ? ou encore pour les métiers est ce que je les prédéfinis ou pas 
+
+Bref la fonction devra prendre en entrée le dictionnaire d'équipage en sachant que c'est un tuple rempli de dicos
+et en sortie ca donnera un dico qu'il faudra ajouter dans le tuple.
+
+erreurs 
+
+Traceback (most recent call last):
+  File "C:\Users\GAMER i7\Desktop\Hexagone\M1-CYB\Python\Partie 1\crew.py", line 36, in <module>
+    print(add_member(crew))
+          ~~~~~~~~~~^^^^^^
+  File "C:\Users\GAMER i7\Desktop\Hexagone\M1-CYB\Python\Partie 1\crew.py", line 28, in add_member
+    crew["first_name"] = new_first_name
+    ~~~~^^^^^^^^^^^^^^
+TypeError: 'tuple' object does not support item assignment
+
+solution : 
+
+crew.append({
+        "first_name": new_first_name,
+        "last_name": new_last_name,
+        "gender": new_gender,
+        "age": new_age,
+        "role": new_role,
+        })
+
+erreurs 
+
+  File "C:\Users\GAMER i7\Desktop\Hexagone\M1-CYB\Python\Partie 1\crew.py", line 38, in <module>
+    print(add_member(crew))
+          ~~~~~~~~~~^^^^^^
+  File "C:\Users\GAMER i7\Desktop\Hexagone\M1-CYB\Python\Partie 1\crew.py", line 28, in add_member
+    crew.append({
+    ^^^^^^^^^^^
+AttributeError: 'tuple' object has no attribute 'append'
+
+solution 
+
+Mon erreur était :
+
+crew = {
+    "first_name": "John",
+    "last_name": "Doe",
+    "gender": "M",
+    "age": 30,
+    "role": "commander",
+},
+{
+    "first_name": "Jane",
+    "last_name": "Doe",
+    "gender": "F",
+    "age": 25,
+    "role": "pilot",
+}
+
+que j'ai mal défini crew dès le début je les fais resembler un à tuple mais on ne peux pas modifier un tuple dans il faut le passer sous forme de liste de dicos
+
+crew = [
+    {
+        "first_name": "John",
+        "last_name": "Doe",
+        "gender": "M",
+        "age": 30,
+        "role": "commander",
+    },
+    {
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "gender": "F",
+        "age": 25,
+        "role": "pilot",
+    },
+]
+
+et là on peut y ajouter un nouvel équipage 
+
+Après maintenant il faut passer au cas que j'avais énumérai avant : 
+pour les caractères c'est simple suffit d'utiliser len pour les entier il faut que je trovue une fonction de python pour permettre de les verifier.
+J'ai trouvé isDigit() comme fonction il manque plsu qu'a l'utilisé maintenant.
+Ou j'ai encore plus simple je met int dans les inputs pour que ce soit plus simple.
