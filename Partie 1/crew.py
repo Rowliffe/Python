@@ -1,17 +1,20 @@
+import random 
+
+
 crew = [
     {
         "first_name": "John",
         "last_name": "Doe",
         "gender": "M",
         "age": 30,
-        "role": "commander",
+        "role": "technicien",
     },
     {
         "first_name": "Jane",
         "last_name": "Doe",
         "gender": "F",
         "age": 25,
-        "role": "pilot",
+        "role": "pilote",
     },
 ]
 
@@ -27,6 +30,15 @@ def add_member(crew):
         print("Le nom et le prénom doivent contenir entre 3 et 15 caractères")
         return crew
 
+    if new_age < 18 and new_role == "pilote":
+        print("Pour être pilot il faut avoir au moins 18 ans")
+        return crew
+    if new_age < 25 and new_role == "technicien":
+        print("Pour être technicien il faut avoir au moins 25 ans")
+        return crew
+    if new_age > 65 :
+        print("Pour être dans l'équipage il faut avoir moins de 65 ans")
+    
     for member in crew:
         if member["first_name"] == new_first_name and member["last_name"] == new_last_name:
             print("Ce membre est déjà dans l'équipage")
@@ -41,5 +53,87 @@ def add_member(crew):
     })
     return crew
 
+def remove_member(crew):
+    remove_last_name = input("Nom du membre à retirer : ")
+    for member in crew:
+        if member["last_name"] != remove_last_name: 
+            print("Ce membre n'est pas dans l'équipage")
+            return crew
+        else:
+            crew.remove(member)
+            return crew
+    return crew    
 
-print(add_member(crew))
+
+def display_crew(crew):
+    if crew == []:
+        print("Aucun membre dans l'équipage")
+    for member in crew:
+        print(f"Nom : {member['last_name']} - Prénom : {member['first_name']} - Sexe : {member['gender']} - Âge : {member['age']} - Rôle : {member['role']}")
+    return crew
+
+def check_crew(crew):
+    if len(crew) < 2:
+        print("L'équipage doit contenir au moins 2 membres")
+        return crew
+
+    pilot = False
+    technician = False
+
+    for member in crew:
+        if member["role"] == "pilote" :
+            pilot=True
+        if member["role"] == "technicien":
+            technician=True
+
+    if pilot and technician:
+        print("L'équipage est prêt pour la mission !")
+    else:
+        print("L'équipage n'est pas prêt")
+    return crew
+
+
+def random_events(crew):
+    events = random.choice(["promu","démission"])
+    if events == "promu":
+        print("Un membre de l'équipage a été promu")
+    else:
+        print("Un membre de l'équipage a démissionné")
+    return crew
+
+
+
+def menu(crew):
+    counter_events = 0
+    while True:
+        print(" [1] Ajouter un membre d'équipage")
+        print(" [2] Retirer un membre d'équipage")
+        print(" [3] Afficher l'équipage")
+        print(" [4] Vérifier si l'équipage est prêt")
+        print(" [5] Quitter")
+
+        choice = input("Choisissez une option  : ")
+        match choice:
+            case "1":
+                add_member(crew)
+                counter_events += 1
+            case "2":
+                remove_member(crew) 
+                counter_events += 1
+            case "3":
+                display_crew(crew)
+                counter_events += 1
+            case "4":
+                check_crew(crew)
+                counter_events += 1
+            case "5":
+                break
+            case _:
+                print("Option invalide")
+        if counter_events == 5:
+            random_events(crew)
+            counter_events = 0
+
+menu(crew)
+
+    

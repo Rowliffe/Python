@@ -104,3 +104,139 @@ Après maintenant il faut passer au cas que j'avais énumérai avant :
 pour les caractères c'est simple suffit d'utiliser len pour les entier il faut que je trovue une fonction de python pour permettre de les verifier.
 J'ai trouvé isDigit() comme fonction il manque plsu qu'a l'utilisé maintenant.
 Ou j'ai encore plus simple je met int dans les inputs pour que ce soit plus simple.
+
+
+2. Supprimer un membre d'équipage
+
+JE vais créer une fonction pour supprimer un membre d'équipage
+Donc en critère demandé il y a que la suppression ce fait par rapport au nom de plus il faut que si le nom n'est pas dans l'équipage ou et mal écrit que ca retourne une erreur avec messages 
+Donc en entrée de la fonction on devra prendre la liste de dico et qui nous donnera après avoir utilisé la fonction en sortie le dico avec le nom d'équipage retirer.
+
+Pas de problèmes rencontrés à voir quand je vais implémenter le menu je vais devoir peut être faire des changements 
+
+3. Afficher l'équipage 
+
+La fonction prendra en entrée comme toutes les autres la même chose une liste de dico et en sortie donnera une liste de dico 
+
+erreur :
+
+Nom : Doe - Prénom : John - Sexe : M - Âge : 30 - Rôle : commander
+[{'first_name': 'John', 'last_name': 'Doe', 'gender': 'M', 'age': 30, 'role': 'commander'}, {'first_name': 'Jane', 'last_name': 'Doe', 'gender': 'F', 'age': 25, 'role': 'pilot'}]
+
+Voci ce que ca m'affiche je pense que j'ai mal fait ma boucle for je devrais utilisé les indices car la au final ca me print juste le premier dico et non pas l'ensemble des dicos qui compose la liste 
+
+Ducoup la solution c'était juste de retirer un return crew et de le mettre a la fin de la boucle et aussi le fait que la condition if était dans la boucle ca ne marchait pas elle était jamais lu.
+
+4. Vérifier si l'équipage est prêt 
+
+la fonction prendre comme d'hab en entrée un dico et ensuite en sorite elle donne un dico 
+
+Je viens de voir que ducoup mon crew contient bel est bien 2 membre d'équipage mais par contre je ne peux pas encore créer de crew solo 
+Il va falloire l'implémenter avec le choix des menus qui me permmettra de créer ducoup une liste de dicos à chaque fois etc donc ca va rajouter des cas d'arrêts et des conditions en plus mais l'instant je n'ai pas besoin d'implémenter cette fonction 
+
+Erreur
+
+PS C:\Users\GAMER i7\Desktop\Hexagone\M1-CYB\Python\Partie 1> python .\crew.py
+L'équipage n'est pas prêt
+L'équipage n'est pas prêt
+
+Pour l'instant ca ne marche pas je pense qu'il parcourt mal les dicos 
+
+def check_crew(crew):
+    if len(crew) < 2:
+        print("L'équipage doit contenir au moins 2 membres")
+    for member in crew:
+        if member["role"] == "pilote" and member["role"] == "technicien":
+            print("L'équipage est prêt pour la mission !")
+        else:
+            print("L'équipage n'est pas prêt")
+    return crew
+
+Mais par contre ca prends bien en compte le fait que si la longueur du la liste de dico est inférieur a 2 ca print bien le message attendu même si il y a quand même une ligne en trop je dois mal faire le parcour de la liste 
+
+PS C:\Users\GAMER i7\Desktop\Hexagone\M1-CYB\Python\Partie 1> python .\crew.py
+L'équipage doit contenir au moins 2 membres
+L'équipage n'est pas prêt
+
+Bref je pense que c'est le même probleme quand haut, j'avais eu ce probleme car je mais ma condition sur la même chaine c'est pourquoi ca ne marche pas peut etre si je split les conditions peux être que ca va mieux marcher 
+
+def check_crew(crew):
+    if len(crew) < 2:
+        print("L'équipage doit contenir au moins 2 membres")
+    for member in crew:
+        if member["role"] == "pilote" :
+            print("L'équipage est prêt pour la mission !")
+        elif member["role"] == "technicien":
+            print("L'équipage est prêt pour la mission !")
+        else:
+            print("L'équipage n'est pas prêt")
+    return crew
+
+Alors ca marche mais ce n'est pas ce qui ai demandé ducoup...
+
+plusieurs solutions je peux sois créer une autre dico pour mettre les rôles dedans ou encore créer d'autres variables pour après faire une condition avec...
+Je pense la plus simple est quand même la plus simple c'est de faire la aevc les deux variables comme
+
+pilot = False
+    technician = False
+
+    for member in crew:
+        if member["role"] == "pilote" :
+            pilot=True
+        if member["role"] == "technicien":
+            technician=True
+
+    if pilot and technician:
+        print("L'équipage est prêt pour la mission !")
+
+        Un truc dans ce genre je pense que c'est la meilleure solution vu que c'est chacun une chaine de caractères du dico s'est plus simple sinon il y a aussi la méthode avec les items ou keys je ne sais plus c'est laquel mais qui peut marcher aussi enfin a mon avis.
+  
+
+maintenant il faut passer au truc chiant le menu intéractif...
+
+Donc comme d'hab une boucle while True et un break sur les condition pour sortir 
+
+COmme dit dans la consignes je vais faire ducoup avec un match case plus simple et surtout plus lisible 
+Pour l'instant ca marche mais ca me kick quand j'ai fini une option alors que s'est sencé bouclé...
+while True:
+        print(" [1] Ajouter un membre d'équipage")
+        print(" [2] Retirer un membre d'équipage")
+        print(" [3] Afficher l'équipage")
+        print(" [4] Vérifier si l'équipage est prêt")
+        print(" [5] Quitter")
+
+        choice = input("Choisissez une option  : ")
+        match choice:
+            case "1":
+                add_member(crew)
+            case "2":
+                remove_member(crew)
+            case "3":
+                display_crew(crew)
+            case "4":
+                check_crew(crew)
+            case "5":
+                break
+            case _:
+                print("Option invalide")
+          return crew
+
+J'ai trouvé mon erreur elle était débile en gros c'est que j'ai laissé mon return crew donc forcément après chaque option le programme s'arreter car il voyait un return...
+
+Étape Bonus
+
+1. Contraintes sur les membres
+
+JE dois implémenter l'âge minimum pour certains métier et qu'aucun membre ne dois dépasser un certain age 
+Par contre encore la comme je l'ai dit plutôt est ce que je fais en sorte qu'il y a des rôle spécifique près définis sinon tous le monde pourrais mettre n'importe quoi dans les rôles 
+
+Bref ca marche il fallait juste modifier la partie add_member et rajouter des conditions sur l'âge
+
+Duocup je vais commencer à faire ça 
+DOnc il faut que je modifie mon code pour permmettre à ce qu il y est des rôle prédifinis et que les utilisateurs puissent choisir que dans ces rôles
+
+
+2.  Événements aléatoires
+
+il suffit de créer une foncion aléatoire en important random, et après il faut créer un compteur qui s'incrémente dans le menu jusqu'à 5 
+Après lors de l'implémentation je vais devoir créer en plus les textes et aussi faire en sorte de remove et de append les bonne information comme pour la promotion. Après pour leave l'équipage faie un pop sur la liste
