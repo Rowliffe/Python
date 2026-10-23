@@ -22,6 +22,7 @@ crew = [
 
 
 def add_member(crew):
+
     new_first_name = input("Prénom du membre d'équipage : ")
     new_last_name = input("Nom du membre d'équipage : ")
     new_gender = input("Sexe du membre d'équipage : ")
@@ -65,6 +66,7 @@ def add_member(crew):
     return crew
 
 def remove_member(crew):
+
     remove_last_name = input("Nom du membre à retirer : ")
     for member in crew:
         if member["last_name"] != remove_last_name: 
@@ -77,6 +79,7 @@ def remove_member(crew):
 
 
 def display_crew(crew):
+
     if crew == []:
         print("Aucun membre dans l'équipage")
     for member in crew:
@@ -84,6 +87,7 @@ def display_crew(crew):
     return crew
 
 def check_crew(crew):
+
     if len(crew) < 2:
         print("L'équipage doit contenir au moins 2 membres")
         return crew
@@ -105,6 +109,7 @@ def check_crew(crew):
 
 
 def random_events(crew):
+
     events = random.choice(["promu","démission"])
     if events == "promu":
         print("Un membre de l'équipage a été promu")
@@ -114,6 +119,7 @@ def random_events(crew):
 
 
 def promote_member(crew):
+
     last_name = input("Nom du membre à promouvoir : ")
     first_name = input("Prénom du membre à promouvoir : ")
     for member in crew:
@@ -135,6 +141,7 @@ def promote_member(crew):
     return crew
 
 def crew_report(crew):
+
     if not crew:
         print("Aucun membre dans l'équipage")
         return crew
@@ -159,6 +166,7 @@ def crew_report(crew):
     return crew
 
 def menu(crew):
+    
     counter_events = 0
     while True:
         print(" [1] Ajouter un membre d'équipage")
