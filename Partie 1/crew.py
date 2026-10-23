@@ -8,6 +8,7 @@ crew = [
         "gender": "M",
         "age": 30,
         "role": "technicien",
+        "experience": 5,
     },
     {
         "first_name": "Jane",
@@ -15,6 +16,7 @@ crew = [
         "gender": "F",
         "age": 25,
         "role": "pilote",
+        "experience": 10,
     },
 ]
 
@@ -38,6 +40,14 @@ def add_member(crew):
         return crew
     if new_age > 65 :
         print("Pour être dans l'équipage il faut avoir moins de 65 ans")
+        return crew
+
+    experience = 0
+    if new_role == "technicien":
+        experience = int(input("Expérience du membre d'équipage : "))
+        if experience < 0:
+            print("Pas possible d'avoir une expérience négative...")
+            return crew
     
     for member in crew:
         if member["first_name"] == new_first_name and member["last_name"] == new_last_name:
@@ -50,6 +60,7 @@ def add_member(crew):
         "gender": new_gender,
         "age": new_age,
         "role": new_role,
+        "experience": experience,
     })
     return crew
 
@@ -69,7 +80,7 @@ def display_crew(crew):
     if crew == []:
         print("Aucun membre dans l'équipage")
     for member in crew:
-        print(f"Nom : {member['last_name']} - Prénom : {member['first_name']} - Sexe : {member['gender']} - Âge : {member['age']} - Rôle : {member['role']}")
+        print(f"Nom : {member['last_name']} - Prénom : {member['first_name']} - Sexe : {member['gender']} - Âge : {member['age']} - Rôle : {member['role']} - Expérience : {member['experience']} ans")
     return crew
 
 def check_crew(crew):
@@ -102,6 +113,28 @@ def random_events(crew):
     return crew
 
 
+def promote_member(crew):
+    last_name = input("Nom du membre à promouvoir : ")
+    first_name = input("Prénom du membre à promouvoir : ")
+    for member in crew:
+        if member["last_name"] != last_name or member["first_name"] != first_name:
+            continue
+        if member["role"] != "technicien":
+            print("Ce membre n'est pas un technicien")
+            return crew
+        if member["experience"] < 10:
+            print("Ce membre d'équipage n'a pas assez d'expérience pour être promu")
+            return crew
+        if member["age"] < 18 or member["age"] > 65:
+            print("Ce membre d'équipage n'a pas l'âge requis pour être promu")
+            return crew
+        member["role"] = "pilote"
+        print(f"Le membre {member['first_name']} {member['last_name']} a été promu pilote bien joué à lui")
+        return crew
+    print("Ce membre n'est pas dans l'équipage")
+    return crew
+
+
 
 def menu(crew):
     counter_events = 0
@@ -110,7 +143,8 @@ def menu(crew):
         print(" [2] Retirer un membre d'équipage")
         print(" [3] Afficher l'équipage")
         print(" [4] Vérifier si l'équipage est prêt")
-        print(" [5] Quitter")
+        print(" [5] Promouvoir un technicien")
+        print(" [6] Quitter")
 
         choice = input("Choisissez une option  : ")
         match choice:
@@ -127,6 +161,9 @@ def menu(crew):
                 check_crew(crew)
                 counter_events += 1
             case "5":
+                promote_member(crew)
+                counter_events += 1
+            case "6":
                 break
             case _:
                 print("Option invalide")

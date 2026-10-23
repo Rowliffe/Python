@@ -240,3 +240,15 @@ DOnc il faut que je modifie mon code pour permmettre à ce qu il y est des rôle
 
 il suffit de créer une foncion aléatoire en important random, et après il faut créer un compteur qui s'incrémente dans le menu jusqu'à 5 
 Après lors de l'implémentation je vais devoir créer en plus les textes et aussi faire en sorte de remove et de append les bonne information comme pour la promotion. Après pour leave l'équipage faie un pop sur la liste
+
+3. Gestion des promotions
+
+Ce que je dois faire ducoup maintenant c'est juste de rajouter une variable experience et encie créer une condition pour le technicien 
+Pour faire tous ca il faudra modifier les fonctions d'ajouts des membres dans l'équipage et après demandé son expérience lorsque l'on ajoute un technicien dans l'équipage
+Après je pense le mieux est de créer une autre fonction qui prendra en paramettre une dico comme d'hab et qui donnera en sortie un dici mais qui permettra de verifier le role des membres d'équipage et d'effectuer la promotions si le role correspond et que son expérience correspond
+Par conséquent il faudra modifier le menu pour mettre en place peut etre dans check_crew voir les promotions et les faire appliquer ou créer une autre option. Et aussi j'ai oublié de préciser que ducoup dans la fonction de promotion aussi verifier comme pour la fonction add_member les âges il faut que ca soit bien respecté
+Je pense quand même que la meilleure solution est de créer une autre option et de vérifier les expérience. 
+
+4. Rapport complet de l’équipage
+
+Donc c'est simple c'est comme pour le check_crew mais cette fois ci un peu plus détaillé 
