@@ -251,4 +251,8 @@ Je pense quand même que la meilleure solution est de créer une autre option et
 
 4. Rapport complet de l’équipage
 
-Donc c'est simple c'est comme pour le check_crew mais cette fois ci un peu plus détaillé 
+Donc c'est simple c'est comme pour le check_crew mais cette fois ci un peu plus détaillé donc juste en entrée comme d'hab un dico et en sortie pareil 
+pour le nombre d'équipage c'est simple on fait avec len par contre pour voir la lsite de role peut être mettre en place un autre dico et on ajoute ces roles dans le nouveau dico ce qui permettra de mieux faire affiche les rôles et de les sortir de la liste des dicos 
+Pour savoir la répartition des rôels dans l'&quipage il suffit juste d'utiliser les indices du dico en utilisant .items pour juste compter le nombre des rôles qui sont dans l'équipage pour après le mettre dans le dico des rôles et savoir la répartition de l'équipage 
+Pour ce que touche a l'age etc il suffit juste de calculer les différence d'âge après dnas la consigne ce n'est pas préciser l'âge a partir que ca commence être la fin donc on peut le setup à 60 ou 62 ans dépendnant de nos estimations de ce qui est proche de la retraite ou pas 
+comme d'habitude aussi après ca il faut ajouter une nouvelle option dans le menu 

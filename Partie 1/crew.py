@@ -134,7 +134,29 @@ def promote_member(crew):
     print("Ce membre n'est pas dans l'équipage")
     return crew
 
+def crew_report(crew):
+    if not crew:
+        print("Aucun membre dans l'équipage")
+        return crew
+    print(f"Nombre de membres dans l'équipage : {len(crew)}")
 
+    roles = {}
+
+    for member in crew:
+        role_member = member["role"]
+        if role_member in roles:
+            roles[role_member] += 1
+        else:
+            roles[role_member] = 1         
+
+    for role, count in roles.items():
+        print(f"Rôle : {role} - Nombre de membres : {count}")
+
+    for member in crew:
+        if member["age"] >= 60:
+            print(f"Le membre {member['first_name']} {member['last_name']} est bientôt à la retraite")
+
+    return crew
 
 def menu(crew):
     counter_events = 0
@@ -144,7 +166,8 @@ def menu(crew):
         print(" [3] Afficher l'équipage")
         print(" [4] Vérifier si l'équipage est prêt")
         print(" [5] Promouvoir un technicien")
-        print(" [6] Quitter")
+        print(" [6] Afficher le rapport de l'équipage")
+        print(" [7] Quitter")
 
         choice = input("Choisissez une option  : ")
         match choice:
@@ -164,6 +187,9 @@ def menu(crew):
                 promote_member(crew)
                 counter_events += 1
             case "6":
+                crew_report(crew)
+                counter_events += 1
+            case "7":
                 break
             case _:
                 print("Option invalide")
