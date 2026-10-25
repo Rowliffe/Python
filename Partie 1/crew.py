@@ -110,8 +110,16 @@ def check_crew(crew):
 
 def random_events(crew):
 
+    if not crew:
+        print("Aucun membre dans l'équipage")
+        return crew
+
     events = random.choice(["promu","démission"])
-    if events == "promu":
+    if events == "démission":
+        member = random.choice(crew)
+        crew.remove(member)
+        print(f"Le membre {member['first_name']} {member['last_name']} a démissionné")
+    elif events == "promu": 
         print("Un membre de l'équipage a été promu")
     else:
         print("Un membre de l'équipage a démissionné")
@@ -166,7 +174,7 @@ def crew_report(crew):
     return crew
 
 def menu(crew):
-    
+
     counter_events = 0
     while True:
         print(" [1] Ajouter un membre d'équipage")

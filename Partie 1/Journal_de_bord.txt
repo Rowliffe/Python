@@ -256,3 +256,12 @@ pour le nombre d'équipage c'est simple on fait avec len par contre pour voir la
 Pour savoir la répartition des rôels dans l'&quipage il suffit juste d'utiliser les indices du dico en utilisant .items pour juste compter le nombre des rôles qui sont dans l'équipage pour après le mettre dans le dico des rôles et savoir la répartition de l'équipage 
 Pour ce que touche a l'age etc il suffit juste de calculer les différence d'âge après dnas la consigne ce n'est pas préciser l'âge a partir que ca commence être la fin donc on peut le setup à 60 ou 62 ans dépendnant de nos estimations de ce qui est proche de la retraite ou pas 
 comme d'habitude aussi après ca il faut ajouter une nouvelle option dans le menu 
+
+2.  Événements aléatoires (suite)
+
+Ducoup ce qu'il manque actuellement c'est le fait d'agir sur l'équipage donc soit d'enlever avec pop ou sois de modifier pour la promotion
+Il faut prendre en compte aussi que la personne qui démissionne doit être aléatoire donc pas prédéfinis 
+
+
+Bref pas mal de truc que j'aurais pu ajouter enb plus comme de vérifier les roles, tous ce qui rentre dans les input etc etc 
+Mais bon ce n'est pas demané mais ca seras quand même mieux normalement 
